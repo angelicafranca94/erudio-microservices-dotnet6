@@ -1,3 +1,6 @@
+using GeekShopping.ProductAPI.Model.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,7 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connection = builder.Configuration["MySqlConnection:MySqlConnectionString"];
+
+builder.Services.AddDbContext<MySQLContext>(options => options.
+UseMySql(connection,
+    new MySqlServerVersion(
+        new Version(8, 0, 28))));
+
+//As injeções devem estar antes dessa linha
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
