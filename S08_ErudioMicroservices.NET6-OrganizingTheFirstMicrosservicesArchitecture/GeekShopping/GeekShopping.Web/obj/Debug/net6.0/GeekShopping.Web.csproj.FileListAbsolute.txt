@@ -24,3 +24,11 @@ C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S07_ErudioMicroservices.NET6-Fir
 C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S07_ErudioMicroservices.NET6-FirstMicrosservices\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.pdb
 C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S07_ErudioMicroservices.NET6-FirstMicrosservices\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.genruntimeconfig.cache
 C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S07_ErudioMicroservices.NET6-FirstMicrosservices\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\ref\GeekShopping.Web.dll
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.csproj.AssemblyReference.cache
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.GeneratedMSBuildEditorConfig.editorconfig
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.AssemblyInfoInputs.cache
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.AssemblyInfo.cs
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.csproj.CoreCompileInputs.cache
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.RazorAssemblyInfo.cache
+C:\DESENVOLVIMENTO\erudio-microservices-dotnet6\S08_ErudioMicroservices.NET6-OrganizingTheFirstMicrosservicesArchitecture\GeekShopping\GeekShopping.Web\obj\Debug\net6.0\GeekShopping.Web.RazorAssemblyInfo.cs
