@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WxNHPLfBOcFpDgafWiM253kH+TsGc+b24l/gRu8bjmg=",
+  "Hash": "oLM2cK7Vq0/HdEZJbkEkIXlUt+hU4JUf79XSxmwzn4s=",
   "Source": "GeekShopping.IdentityServer",
   "BasePath": "_content/GeekShopping.IdentityServer",
   "Mode": "Default",
@@ -16,40 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S09_ErudioMicroservices.NET6-ConsumingProductMicroserviceOnWebMicroservice\\GeekShopping\\GeekShopping.IdentityServer\\obj\\Debug\\net6.0\\scopedcss\\bundle\\GeekShopping.IdentityServer.styles.css",
-      "SourceId": "GeekShopping.IdentityServer",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S09_ErudioMicroservices.NET6-ConsumingProductMicroserviceOnWebMicroservice\\GeekShopping\\GeekShopping.IdentityServer\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
-      "BasePath": "_content/GeekShopping.IdentityServer",
-      "RelativePath": "GeekShopping.IdentityServer.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S09_ErudioMicroservices.NET6-ConsumingProductMicroserviceOnWebMicroservice\\GeekShopping\\GeekShopping.IdentityServer\\obj\\Debug\\net6.0\\scopedcss\\bundle\\GeekShopping.IdentityServer.styles.css"
-    },
-    {
-      "Identity": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S09_ErudioMicroservices.NET6-ConsumingProductMicroserviceOnWebMicroservice\\GeekShopping\\GeekShopping.IdentityServer\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GeekShopping.IdentityServer.bundle.scp.css",
-      "SourceId": "GeekShopping.IdentityServer",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S09_ErudioMicroservices.NET6-ConsumingProductMicroserviceOnWebMicroservice\\GeekShopping\\GeekShopping.IdentityServer\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/GeekShopping.IdentityServer",
-      "RelativePath": "GeekShopping.IdentityServer.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S09_ErudioMicroservices.NET6-ConsumingProductMicroserviceOnWebMicroservice\\GeekShopping\\GeekShopping.IdentityServer\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GeekShopping.IdentityServer.bundle.scp.css"
-    },
     {
       "Identity": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S09_ErudioMicroservices.NET6-ConsumingProductMicroserviceOnWebMicroservice\\GeekShopping\\GeekShopping.IdentityServer\\wwwroot\\css\\site.css",
       "SourceId": "GeekShopping.IdentityServer",
