@@ -39,7 +39,7 @@ public class ProductService : IProductService
     public async Task<ProductViewModel> UpdateProduct(ProductViewModel model, string token)
     {
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        var response = await _client.PutAsJason(BasePath, model);
+        var response = await _client.PutAsJson(BasePath, model);
         if (response.IsSuccessStatusCode)
             return await response.ReadContentAs<ProductViewModel>();
         else throw new Exception("Alguma coisa deu errado ao chamar a API UpdateProduct");
