@@ -1,3 +1,10 @@
+using AutoMapper;
+using GeekShopping.CouponAPI.Config;
+using GeekShopping.CouponAPI.Model.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,7 +12,84 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations();
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = @"Enter 'Bearer' [space] and your token!",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
+            },
+
+            new List<string>()
+        }
+    });
+});
+
+#region injeção de dependencia
+
+var connection = builder.Configuration["MySqlConnection:MySqlConnectionString"];
+
+builder.Services.
+AddDbContext<MySQLContext>(options => options.
+UseMySql(connection,
+    new MySqlServerVersion(
+        new Version(8, 0, 28))));
+
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+//builder.Services.AddScoped<ICouponRepository, CouponRepository>();
+
+#endregion
+
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://localhost:4435/";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false
+        };
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("ApiScope", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("scope", "geek_shopping");
+    });
+});
+
+
 
 var app = builder.Build();
 
@@ -17,7 +101,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
