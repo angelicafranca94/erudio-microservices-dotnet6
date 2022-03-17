@@ -1,5 +1,8 @@
+using GeekShopping.OrderAPI.MessageConsumer;
 using GeekShopping.OrderAPI.Model.Context;
+using GeekShopping.OrderAPI.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -56,15 +59,12 @@ UseMySql(connection,
     new MySqlServerVersion(
         new Version(8, 0, 28))));
 
-//IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+var db = new DbContextOptionsBuilder<MySQLContext>();
+db.UseMySql(connection, new MySqlServerVersion(
+        new Version(8, 0, 28)));
 
-//builder.Services.AddSingleton(mapper);
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-
-//builder.Services.AddScoped<ICartRepository, CartRepository>();
-//builder.Services.AddScoped<IRabbitMQMessageSender, RabbitMQMessageSender>();
-
+builder.Services.AddSingleton(new OrderRepository(db.Options));
+builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
 #endregion
 
 builder.Services.AddAuthentication("Bearer")
