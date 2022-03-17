@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xIW0p7SlK3z0oJJi1ABGGzo9kkahji9GddI45V2bNyNwHRWdfl2GJX8K32ldfK9I+JcqOMVEXLjLOh8uap0/NA==",
+  "dgSpecHash": "IrhFluLDQLAchu/N6dmZa23ehIAowKoRPZR9OgholDpKsBEmFucrFHOBpfOKt1PP+Zw//2eDq0XK7Z6y7ESOLg==",
   "success": true,
   "projectFilePath": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S19_ErudioMicroservices.NET6-IntegraçãoDosMicrosserviçosComRabbitMQ\\GeekShopping\\GeekShopping.CouponAPI\\GeekShopping.CouponAPI.csproj",
   "expectedPackageFiles": [
