@@ -12,12 +12,17 @@ public class CouponRepository : ICouponRepository
 
     private readonly HttpClient _client;
 
-    public async Task<CouponDTO> GetCouponByCouponCode(string couponCode, string token)
+    public CouponRepository(HttpClient client)
+    {
+        _client = client;
+    }
+
+    public async Task<CouponDTO> GetCoupon(string couponCode, string token)
     {
 
 
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        var response = await _client.GetAsync($"//api/v1/Coupon/{couponCode}");
+        var response = await _client.GetAsync($"/api/v1/Coupon/{couponCode}");
         var content = await response.Content.ReadAsStringAsync();
 
         if(response.StatusCode != HttpStatusCode.OK) return new CouponDTO();

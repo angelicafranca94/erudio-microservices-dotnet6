@@ -4,5 +4,5 @@ namespace GeekShopping.CartAPI.Repository;
 
 public interface ICouponRepository
 {
-    Task<CouponDTO> GetCouponByCouponCode(string couponCode, string token);
+    Task<CouponDTO> GetCoupon(string couponCode, string token);
 }
