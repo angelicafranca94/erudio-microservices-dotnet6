@@ -20,5 +20,5 @@ public class CheckoutHeaderDTO
 
     public int CartTotalItens { get; set; }
 
-    public IEnumerable<CartDetailDTO> CartDetails { get; set; }
+    public IEnumerable<CartDetailDTO>? CartDetails { get; set; }
 }
