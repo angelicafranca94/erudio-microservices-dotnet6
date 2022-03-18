@@ -3,3 +3,5 @@
 ################################################################################
 
 /S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos/GeekShopping/GeekShopping.PaymentProcessor/obj/Debug/net6.0
+/S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos/GeekShopping/GeekShopping.PaymentProcessor/obj
+*.csproj
