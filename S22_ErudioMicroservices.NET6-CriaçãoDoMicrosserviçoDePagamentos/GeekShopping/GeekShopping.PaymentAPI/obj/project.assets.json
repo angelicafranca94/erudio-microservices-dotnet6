@@ -513,6 +513,16 @@
         "runtime": {
           "bin/placeholder/GeekShopping.MessageBus.dll": {}
         }
+      },
+      "GeekShopping.PaymentProcessor/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/GeekShopping.PaymentProcessor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GeekShopping.PaymentProcessor.dll": {}
+        }
       }
     }
   },
@@ -1445,11 +1455,17 @@
       "type": "project",
       "path": "../GeekShopping.MessageBus/GeekShopping.MessageBus.csproj",
       "msbuildProject": "../GeekShopping.MessageBus/GeekShopping.MessageBus.csproj"
+    },
+    "GeekShopping.PaymentProcessor/1.0.0": {
+      "type": "project",
+      "path": "../GeekShopping.PaymentProcessor/GeekShopping.PaymentProcessor.csproj",
+      "msbuildProject": "../GeekShopping.PaymentProcessor/GeekShopping.PaymentProcessor.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "GeekShopping.MessageBus >= 1.0.0",
+      "GeekShopping.PaymentProcessor >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.3",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.1",
@@ -1496,6 +1512,9 @@
           "projectReferences": {
             "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos\\GeekShopping\\GeekShopping.MessageBus\\GeekShopping.MessageBus.csproj": {
               "projectPath": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos\\GeekShopping\\GeekShopping.MessageBus\\GeekShopping.MessageBus.csproj"
+            },
+            "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos\\GeekShopping\\GeekShopping.PaymentProcessor\\GeekShopping.PaymentProcessor.csproj": {
+              "projectPath": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos\\GeekShopping\\GeekShopping.PaymentProcessor\\GeekShopping.PaymentProcessor.csproj"
             }
           }
         }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HbCPrqjvjV7vqX/KwWs4AY8/0fDiaDEBnI6j4Yl86BECHRZoSMOC+ac0WPpp4H/2r2oky54KQjbWozG5A1zB7A==",
+  "dgSpecHash": "10Rksb0Cm7K6Dm+ZHu7tIOT5NEmof6KNFEf1qwMrJP19qQ5oN4ME8LDG8CrMN2L89L1uM685RJ1X7j2mAffamw==",
   "success": true,
   "projectFilePath": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos\\GeekShopping\\GeekShopping.PaymentAPI\\GeekShopping.PaymentAPI.csproj",
   "expectedPackageFiles": [
