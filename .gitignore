@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/S22_ErudioMicroservices.NET6-CriaçãoDoMicrosserviçoDePagamentos/GeekShopping/GeekShopping.PaymentProcessor/obj/Debug/net6.0
