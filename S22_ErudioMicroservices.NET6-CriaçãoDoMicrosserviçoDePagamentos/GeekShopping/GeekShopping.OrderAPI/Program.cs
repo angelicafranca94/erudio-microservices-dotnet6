@@ -64,6 +64,7 @@ db.UseMySql(connection, new MySqlServerVersion(
 
 builder.Services.AddSingleton(new OrderRepository(db.Options));
 builder.Services.AddHostedService<RabbitMQCheckoutConsumer>();
+builder.Services.AddHostedService<RabbitMQPaymentConsumer>(); 
 builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
 #endregion
 
