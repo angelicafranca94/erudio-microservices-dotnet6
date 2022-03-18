@@ -10,7 +10,7 @@ public class OrderHeader: BaseEntity
     public string UserId { get; set; }
 
     [Column("coupon_code")]
-    public string CouponCode { get; set; }
+    public string? CouponCode { get; set; }
 
     [Column("purchase_amount")]
     public decimal PurchaseAmount { get; set; }
@@ -19,10 +19,10 @@ public class OrderHeader: BaseEntity
     public decimal DiscountAmount { get; set; }
 
     [Column("first_name")]
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
 
     [Column("last_name")]
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
 
     [Column("purchase_date")]
     public DateTime DateTime { get; set; }
@@ -31,19 +31,19 @@ public class OrderHeader: BaseEntity
     public DateTime OrderTime { get; set; }
 
     [Column("phone_number")]
-    public string Phone { get; set; }
+    public string? Phone { get; set; }
 
     [Column("email")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     [Column("card_number")]
-    public string CardNumber { get; set; }
+    public string? CardNumber { get; set; }
 
     [Column("cvv")]
-    public string CVV { get; set; }
+    public string? CVV { get; set; }
 
     [Column("expiry_month_year")]
-    public string ExpiryMonthYear { get; set; }
+    public string? ExpiryMonthYear { get; set; }
 
     [Column("total_itens")]
     public int CartTotalItens { get; set; }

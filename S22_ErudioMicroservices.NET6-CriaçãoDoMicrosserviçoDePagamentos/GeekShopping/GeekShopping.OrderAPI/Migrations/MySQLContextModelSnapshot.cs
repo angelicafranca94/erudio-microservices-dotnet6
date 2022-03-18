@@ -42,7 +42,6 @@ namespace GeekShopping.OrderAPI.Migrations
                         .HasColumnName("ProductId");
 
                     b.Property<string>("ProductName")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("product_name");
 
@@ -61,12 +60,10 @@ namespace GeekShopping.OrderAPI.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("CVV")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("cvv");
 
                     b.Property<string>("CardNumber")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("card_number");
 
@@ -75,7 +72,6 @@ namespace GeekShopping.OrderAPI.Migrations
                         .HasColumnName("total_itens");
 
                     b.Property<string>("CouponCode")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("coupon_code");
 
@@ -88,22 +84,18 @@ namespace GeekShopping.OrderAPI.Migrations
                         .HasColumnName("discount_amount");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("email");
 
                     b.Property<string>("ExpiryMonthYear")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("expiry_month_year");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("first_name");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("last_name");
 
@@ -116,7 +108,6 @@ namespace GeekShopping.OrderAPI.Migrations
                         .HasColumnName("payment_status");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("phone_number");
 

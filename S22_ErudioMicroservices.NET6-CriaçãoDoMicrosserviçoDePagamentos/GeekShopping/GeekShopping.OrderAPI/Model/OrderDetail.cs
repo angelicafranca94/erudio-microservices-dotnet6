@@ -18,7 +18,7 @@ public class OrderDetail : BaseEntity
     public int Count { get; set; }
 
     [Column("product_name")]
-    public string ProductName { get; set; }
+    public string? ProductName { get; set; }
 
     [Column("price")]
     public decimal Price { get; set; }

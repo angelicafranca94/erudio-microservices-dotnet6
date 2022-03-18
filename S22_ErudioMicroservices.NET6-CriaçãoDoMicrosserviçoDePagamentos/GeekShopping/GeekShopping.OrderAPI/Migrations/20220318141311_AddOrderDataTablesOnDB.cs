@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GeekShopping.OrderAPI.Migrations
 {
-    public partial class AddOrderDataTableOnDB : Migration
+    public partial class AddOrderDataTablesOnDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,25 +21,25 @@ namespace GeekShopping.OrderAPI.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     user_id = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    coupon_code = table.Column<string>(type: "longtext", nullable: false)
+                    coupon_code = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     purchase_amount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     discount_amount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    first_name = table.Column<string>(type: "longtext", nullable: false)
+                    first_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    last_name = table.Column<string>(type: "longtext", nullable: false)
+                    last_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     purchase_date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     order_time = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    phone_number = table.Column<string>(type: "longtext", nullable: false)
+                    phone_number = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    email = table.Column<string>(type: "longtext", nullable: false)
+                    email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    card_number = table.Column<string>(type: "longtext", nullable: false)
+                    card_number = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    cvv = table.Column<string>(type: "longtext", nullable: false)
+                    cvv = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    expiry_month_year = table.Column<string>(type: "longtext", nullable: false)
+                    expiry_month_year = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     total_itens = table.Column<int>(type: "int", nullable: false),
                     payment_status = table.Column<bool>(type: "tinyint(1)", nullable: false)
@@ -59,7 +59,7 @@ namespace GeekShopping.OrderAPI.Migrations
                     OrderHeaderId = table.Column<long>(type: "bigint", nullable: false),
                     ProductId = table.Column<long>(type: "bigint", nullable: false),
                     count = table.Column<int>(type: "int", nullable: false),
-                    product_name = table.Column<string>(type: "longtext", nullable: false)
+                    product_name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     price = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
                 },
