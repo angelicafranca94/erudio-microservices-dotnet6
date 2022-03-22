@@ -1,1 +1,1 @@
-# erudio-microservices-dotnet6
+Aplicativo realizado na plataforma Udemy ministrado pelo professor https://github.com/leandrocgsi
