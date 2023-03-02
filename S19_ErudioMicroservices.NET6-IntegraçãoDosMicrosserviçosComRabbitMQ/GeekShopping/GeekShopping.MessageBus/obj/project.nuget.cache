@@ -1,8 +1,0 @@
-{
-  "version": 2,
-  "dgSpecHash": "daQjNxkNCXDqOxVd+/pG65NAg4E94uBNJyDBiMzhbc05rKpE/OAzyUWrdcPXQ1ov/QGe1Gv0LWpJV57Z6a01kg==",
-  "success": true,
-  "projectFilePath": "C:\\DESENVOLVIMENTO\\erudio-microservices-dotnet6\\S19_ErudioMicroservices.NET6-IntegraçãoDosMicrosserviçosComRabbitMQ\\GeekShopping\\GeekShopping.MessageBus\\GeekShopping.MessageBus.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
-}
