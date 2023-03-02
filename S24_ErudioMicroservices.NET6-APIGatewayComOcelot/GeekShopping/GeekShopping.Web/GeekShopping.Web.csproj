@@ -12,4 +12,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GeekShopping.Resilience\GeekShopping.Resilience.csproj" />
+  </ItemGroup>
+
 </Project>

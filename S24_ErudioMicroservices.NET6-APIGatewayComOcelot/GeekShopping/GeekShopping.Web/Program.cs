@@ -1,3 +1,4 @@
+using GeekShopping.Resilience;
 using GeekShopping.Web.Services;
 using GeekShopping.Web.Services.IServices;
 using Microsoft.AspNetCore.Authentication;
@@ -39,6 +40,8 @@ builder.Services.AddAuthentication(options =>
          options.SaveTokens = true;
      });
 
+
+builder.Services.AddSingleton(CircuitBreaker.CreatePolicy());
 
 var app = builder.Build();
 

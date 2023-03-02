@@ -4,6 +4,7 @@ using GeekShopping.Web.Services.IServices;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Polly.CircuitBreaker;
 
 namespace GeekShopping.Web.Controllers
 {
@@ -12,19 +13,33 @@ namespace GeekShopping.Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
+        private readonly AsyncCircuitBreakerPolicy _circuitBreaker;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService,
+            AsyncCircuitBreakerPolicy circuitBreaker)
         {
             _logger = logger;
             _productService = productService;
             _cartService = cartService;
+            _circuitBreaker = circuitBreaker;
         }
 
         public async Task<IActionResult> Index()
         {
-            
-            var products = await _productService.FindAllProducts(string.Empty);
-            return View(products);
+            try
+            {
+                var products = await _productService.FindAllProducts(string.Empty);
+                return View(products);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
+                                     $"Circuito = {_circuitBreaker.CircuitState} | " +
+                                     $"Falha ao invocar a API: {ex.GetType().FullName} | {ex.Message}");
+
+                HandleBrokenCircuitException();
+            }
+            return View();
         }
 
         [Authorize]
@@ -85,6 +100,11 @@ namespace GeekShopping.Web.Controllers
         public IActionResult Logout()
         {
             return SignOut("Cookies", "oidc");
+        }
+
+        private void HandleBrokenCircuitException()
+        {
+            TempData["BasketInoperativeMsg"] = "Não foi possível concluir essa tarefa, por favor tente mais tarde. (Business message due to Circuit-Breaker)";
         }
     }
 }
