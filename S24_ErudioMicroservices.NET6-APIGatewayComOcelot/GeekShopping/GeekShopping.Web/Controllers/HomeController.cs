@@ -45,9 +45,22 @@ namespace GeekShopping.Web.Controllers
         [Authorize]
         public async Task<IActionResult> Details(int id)
         {
-            var token = await HttpContext.GetTokenAsync("access_token");
-            var model = await _productService.FindProductById(id, token);
-            return View(model);
+            try
+            {
+                var token = await HttpContext.GetTokenAsync("access_token");
+                var model = await _productService.FindProductById(id, token);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
+                                     $"Circuito = {_circuitBreaker.CircuitState} | " +
+                                     $"Falha ao invocar a API: {ex.GetType().FullName} | {ex.Message}");
+
+                HandleBrokenCircuitException();
+            }
+            return View();
         }
 
         [HttpPost]
@@ -76,13 +89,24 @@ namespace GeekShopping.Web.Controllers
             cartDetails.Add(cartDetail);
             cart.CartDetails = cartDetails;
 
-            var response = await _cartService.AddItemToCart(cart, token);
-            if (response != null)
+            try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _cartService.AddItemToCart(cart, token);
+                if (response != null)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
             }
+            catch (Exception ex)
+            {
 
-            return View(model);
+                _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
+                                     $"Circuito = {_circuitBreaker.CircuitState} | " +
+                                     $"Falha ao invocar a API: {ex.GetType().FullName} | {ex.Message}");
+
+                HandleBrokenCircuitException();
+            }
+            return View();
         }
 
         public IActionResult Privacy()
@@ -104,7 +128,7 @@ namespace GeekShopping.Web.Controllers
 
         private void HandleBrokenCircuitException()
         {
-            TempData["BasketInoperativeMsg"] = "Não foi possível concluir essa tarefa, por favor tente mais tarde. (Business message due to Circuit-Breaker)";
+            TempData["BasketInoperativeMsg"] = "Serviço não disponível, por favor tente mais tarde. (Business message due to Circuit-Breaker)";
         }
     }
 }

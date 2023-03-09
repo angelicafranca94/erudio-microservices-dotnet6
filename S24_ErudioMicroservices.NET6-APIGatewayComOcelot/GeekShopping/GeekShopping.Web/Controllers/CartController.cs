@@ -3,21 +3,26 @@ using GeekShopping.Web.Services.IServices;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Polly.CircuitBreaker;
 
 namespace GeekShopping.Web.Controllers
 {
     public class CartController : Controller
     {
-
+        private readonly ILogger<CartController> _logger;
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
         private readonly ICouponService _couponService;
+        private readonly AsyncCircuitBreakerPolicy _circuitBreaker;
 
-        public CartController(IProductService productService, ICartService cartService, ICouponService couponService)
+        public CartController(IProductService productService, ICartService cartService, ICouponService couponService,
+             ILogger<CartController> logger, AsyncCircuitBreakerPolicy circuitBreaker)
         {
             _productService = productService;
             _cartService = cartService;
             _couponService = couponService;
+            _logger = logger;
+            _circuitBreaker = circuitBreaker;
         }
 
         [Authorize]
@@ -33,12 +38,25 @@ namespace GeekShopping.Web.Controllers
             var token = await HttpContext.GetTokenAsync("access_token");
             var userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
 
-            var response = await _cartService.ApplyCoupon(model, token);
-
-            if (response)
+            try
             {
-                return RedirectToAction(nameof(CartIndex));
+                var response = await _cartService.ApplyCoupon(model, token);
+
+                if (response)
+                {
+                    return RedirectToAction(nameof(CartIndex));
+                }
             }
+            catch (Exception ex)
+            {
+
+                _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
+                                     $"Circuito = {_circuitBreaker.CircuitState} | " +
+                                     $"Falha ao invocar a API: {ex.GetType().FullName} | {ex.Message}");
+
+                HandleBrokenCircuitException();
+            }
+
 
             return View();
         }
@@ -67,7 +85,7 @@ namespace GeekShopping.Web.Controllers
 
             var response = await _cartService.RemoveFromCart(id, token);
 
-            if(response)
+            if (response)
             {
                 return RedirectToAction(nameof(CartIndex));
             }
@@ -85,19 +103,31 @@ namespace GeekShopping.Web.Controllers
         public async Task<IActionResult> Checkout(CartViewModel model)
         {
             var token = await HttpContext.GetTokenAsync("access_token");
-
-            var response = await _cartService.Checkout(model.CartHeader, token);
-
-            if (response != null && response.GetType() == typeof(string))
+            try
             {
-                TempData["Error"] = response;
-                return RedirectToAction(nameof(Checkout));
+                var response = await _cartService.Checkout(model.CartHeader, token);
+
+                if (response != null && response.GetType() == typeof(string))
+                {
+                    TempData["Error"] = response;
+                    return RedirectToAction(nameof(Checkout));
+                }
+                else if (response != null)
+                {
+                    return RedirectToAction(nameof(Confirmation));
+                }
+                return View(model);
             }
-            else if (response != null)
+            catch (Exception ex)
             {
-                return RedirectToAction(nameof(Confirmation));
+
+                _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
+                                     $"Circuito = {_circuitBreaker.CircuitState} | " +
+                                     $"Falha ao invocar a API: {ex.GetType().FullName} | {ex.Message}");
+
+                HandleBrokenCircuitException();
             }
-            return View(model);
+            return View();
         }
 
         [HttpGet]
@@ -111,30 +141,64 @@ namespace GeekShopping.Web.Controllers
             var token = await HttpContext.GetTokenAsync("access_token");
             var userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
 
-            var response = await _cartService.FindCartByUserId(userId, token);
-
-            if (response?.CartHeader != null)
+            try
             {
-                if(!string.IsNullOrEmpty(response.CartHeader.CouponCode))
-                {
-                    var coupon = await _couponService.GetCoupon(response.CartHeader.CouponCode, token);
+                var response = await _cartService.FindCartByUserId(userId, token);
 
-                    //se cupom E cuponcode
-                    if(coupon?.CouponCode != null)
+                if (response?.CartHeader != null)
+                {
+                    if (!string.IsNullOrEmpty(response.CartHeader.CouponCode))
                     {
-                        response.CartHeader.DiscountAmount = coupon.DiscountAmount;
+                        var coupon = await _couponService.GetCoupon(response.CartHeader.CouponCode, token);
+
+                        //se cupom E cuponcode
+                        if (coupon?.CouponCode != null)
+                        {
+                            response.CartHeader.DiscountAmount = coupon.DiscountAmount;
+
+                            response.CartHeader.PurchaseAmount -= response.CartHeader.DiscountAmount;
+
+
+                        }
+                        else
+                        {
+                            _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
+                                                     $"Circuito = {_circuitBreaker.CircuitState} | " +
+                                                     $"Falha ao invocar a API: CouponApi");
+
+                            HandleBrokenCircuitException();
+
+                            response.CartHeader.CouponCode = string.Empty;
+
+
+                        }
                     }
+
+                    foreach (var detail in response.CartDetails)
+                    {
+                        response.CartHeader.PurchaseAmount += (detail.Product.Price * detail.Count);
+                    }
+
                 }
 
-                foreach (var detail in response.CartDetails)
-                {
-                    response.CartHeader.PurchaseAmount += (detail.Product.Price * detail.Count);
-                }
+                return response;
+            }
+            catch (Exception ex)
+            {
 
-                response.CartHeader.PurchaseAmount -= response.CartHeader.DiscountAmount;
+                _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
+                                     $"Circuito = {_circuitBreaker.CircuitState} | " +
+                                     $"Falha ao invocar a API: {ex.GetType().FullName} | {ex.Message}");
+
+                HandleBrokenCircuitException();
             }
 
-            return response;
+            return null;
+        }
+
+        private void HandleBrokenCircuitException()
+        {
+            TempData["BasketInoperativeMsg"] = "Serviço não disponível, por favor tente mais tarde. (Business message due to Circuit-Breaker)";
         }
     }
 }

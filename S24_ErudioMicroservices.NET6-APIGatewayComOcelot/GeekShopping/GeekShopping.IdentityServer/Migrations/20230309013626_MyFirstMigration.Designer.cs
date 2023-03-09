@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeekShopping.IdentityServer.Migrations
 {
     [DbContext(typeof(MySQLContext))]
-    [Migration("20220311174245_AddDefaultSecurityTablesOnDB")]
-    partial class AddDefaultSecurityTablesOnDB
+    [Migration("20230309013626_MyFirstMigration")]
+    partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

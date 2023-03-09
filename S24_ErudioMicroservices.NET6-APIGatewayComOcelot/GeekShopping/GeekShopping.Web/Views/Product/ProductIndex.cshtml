@@ -14,6 +14,12 @@
             </a>
         </div>
     </div>
+     @if (Model is null)
+    {
+        <span>@TempData["BasketInoperativeMsg"]</span>
+    }
+    else
+    {
     <table class="table">
         <thead>
             <tr>
@@ -24,6 +30,7 @@
             </tr>
         </thead>
         <tbody>
+
             @foreach (var item in Model)
             {
                 <tr>
@@ -47,4 +54,5 @@
             }
         </tbody>
     </table>
+    }
 </div>
