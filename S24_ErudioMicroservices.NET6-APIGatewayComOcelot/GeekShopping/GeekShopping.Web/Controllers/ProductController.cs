@@ -31,6 +31,7 @@ namespace GeekShopping.Web.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogInformation($"Falha ao invocar a API: {ex.GetType().FullName}", DateTime.UtcNow);
 
                 _logger.LogError($"# {DateTime.Now:HH:mm:ss} # " +
                                      $"Circuito = {_circuitBreaker.CircuitState} | " +
